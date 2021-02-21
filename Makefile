@@ -1,9 +1,15 @@
-#!/bin/bash
+## The Makefile includes instructions on environment setup for running locally and lint tests
+
+## Create python virtualenv & source it at terminal 
+# setup: Manually setup at terminal
+# python3.8 -m venv venv
+	## activate venv: 
+# source venv/bin/activate 
 
 install:
 	# This should be run from inside a virtualenv	
-	sudo pip install --upgrade pip &&\
-		sudo pip install -r requirements.txt 
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt 
 
 	# Install hadolint	
 	wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
