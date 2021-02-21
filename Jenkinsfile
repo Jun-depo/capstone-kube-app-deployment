@@ -4,7 +4,7 @@ pipeline {
         stage('Linting') {
             steps { withPythonEnv('/usr/bin/python3.8')                              
                 {
-                    sh 'sudo apt-get install -y python3-venv'
+                    sh 'sudo apt-get install python3-venv -y'
                     sh 'python3.8 -m venv venv'
                     sh '. venv/bin/activate'
                     sh 'make install' 
