@@ -1,7 +1,10 @@
 pipeline {
     agent any
     stages{
-        stage('Install dependencies'){            
+        stage('Install dependencies'){ 
+            agent {
+                docker { image 'python:3.8.1' } 
+            }           
             steps {
             sh 'pip install --upgrade pip && pip install -r requirements.txt'
             sh 'wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
