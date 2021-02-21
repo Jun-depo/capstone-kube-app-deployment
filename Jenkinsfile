@@ -15,6 +15,7 @@ pipeline {
         }
         stage('Linting') {
             steps {
+        sh '. venv/bin/activate'
         sh './hadolint Dockerfile'
         sh 'pylint --disable=R,C,W1203 --load-plugins pylint_flask_sqlalchemy app.py'
         sh 'pylint --disable=R,C forms.py'
