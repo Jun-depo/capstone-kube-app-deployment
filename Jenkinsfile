@@ -7,7 +7,7 @@ pipeline {
             }   
             steps                               
                 {
-                    sh 'mkdir /.cache/pip'
+                    sh 'mkdir -p /.cache/pip'
                     sh 'chmod 777 /.cache/pip'
                     sh 'mkdir /.local'
                     sh 'chmod 777 /.local'
