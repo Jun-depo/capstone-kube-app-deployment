@@ -2,9 +2,10 @@ pipeline {
     agent any
     stages{  
         stage('Linting') { 
-            steps  {                
-                agent (docker 'python:3.8.7-buster')  
+            steps  { 
+                agent { docker { image 'python:3.8.7-buster' } }                 
                 {   
+                    sh 'python --version'
                     sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
                     sh 'python get-pip.py'
                     sh 'make install'
