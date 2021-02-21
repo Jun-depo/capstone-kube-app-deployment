@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+  <h2>Data List:</h2>
+
+  <ul>
+    {% for d in all_data %}
+        <li>ID: {{d.id_}}, Name: {{d.name }}, Age: {{d.age }}, TSH: {{d.tsh }}, T3: {{d.t3 }},
+          TT4: {{d.tt4}}, T4U: {{d.t4u }}, FTI: {{d.fti }}
+        </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
+

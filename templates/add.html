@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h2>Do you want to know your hypothyroid conditions?</h2>
+  <br>
+  <h5>Please provide ALL the following information for initial assessment:</h5>
+  <br>
+  <h5>Misisng data would return back to this page </h5>
+
+  <form method="POST">
+      {# This hidden_tag is a CSRF security feature. #}
+      {{ form.hidden_tag() }}
+      <br>
+      {{ form.name.label }}
+      <p>{{ form.name() }}</p>
+
+      {{ form.age.label }}
+      <p>{{ form.age() }}</p>
+
+      {{ form.tsh.label }}
+      <p>{{ form.tsh() }}</p>
+
+      {{ form.t3.label }}
+      <p>{{ form.t3() }}</p>
+
+      {{ form.tt4.label }}
+      <p>{{ form.tt4() }}</p>
+
+      {{ form.t4u.label }}
+      <p>{{ form.t4u() }}</p>
+
+      {{ form.fti.label }}<br>
+      <p>{{ form.fti() }}</p>
+
+      <p>{{ form.submit() }}</p>
+  </form>
+  <p> Try an example data input as: <br>
+    {Name: Sam, Age: 35, TSH: 4.67, T3: 2.02, TT4: 109.1, T4U: 0.998, FTI: 111.1} </p>
+</div>
+{% endblock %}

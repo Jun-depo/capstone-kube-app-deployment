@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+
+  <h3>Your data input: </h3>
+  <ul>
+    <li>Name: {{input_values.Name}}, Age: {{input_values.Age}},
+    TSH: {{input_values.TSH}}, T3: {{input_values.T3}},
+    TT4: {{input_values.TT4}}, T4U: {{input_values.T4U}},
+    FTI: {{input_values.FTI}}</li>
+  </ul>
+  
+  <h3>The Prediction: </h3>
+
+  <ul>
+    {% for i in predictions %}
+        <li>You have {{i}}</li>
+    {% endfor %}
+  </ul>
+
+</div>
+{% endblock %}

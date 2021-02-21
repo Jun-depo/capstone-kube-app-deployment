@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+metadata:
+  name: capstone-project-cloud-devops
+  labels:
+    app: app.py
+  namespace: default
+specs:
+  replicas: 3
+  selector:
+    matchlabels
+
