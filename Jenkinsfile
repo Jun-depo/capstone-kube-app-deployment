@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Install dependencies'){ 
             agent {
-                docker { image 'python:3.8.1' } 
+                docker { image 'python:3.8.8-alpine3.13' } 
             }           
             steps {
             sh 'pip install --upgrade pip && pip install -r requirements.txt'
