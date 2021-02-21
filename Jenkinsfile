@@ -1,7 +1,8 @@
 pipeline {
-  stages {
-    stage("Build") {
-       steps {
+    agent any
+    stages {
+        stage("Build") {
+            steps {
           // Just print a Hello, Pipeline to the console
           echo "Hello, Pipeline!"
        }
