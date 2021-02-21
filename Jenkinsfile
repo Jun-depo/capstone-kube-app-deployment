@@ -4,7 +4,10 @@ pipeline {
         stage('Linting') {
             steps                               
                 {   
-                    sh 'conda create --yes -n venv python=3.8'
+                    sh 'wget -O . https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh'
+                    sh 'bash Miniconda3-latest-Linux-x86_64.sh'
+                    sh '. /miniconda3/bin/activate'
+                    sh 'conda create --yes -n venv'
                     sh 'conda activate venv'
                     sh 'make install'
                     sh './hadolint Dockerfile'
