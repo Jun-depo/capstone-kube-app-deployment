@@ -6,9 +6,9 @@ pipeline {
                 docker { image 'python:3.8.7-buster'} 
             }           
             steps {
-            sh 'sudo pip install --upgrade pip && pip install -r requirements.txt'
-            sh 'wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
-	        chmod +x ./hadolint'
+            sh 'python3.8 -m venv venv'
+            sh '. venv/bin/activate'
+            sh 'make install'
             }
         }
         stage('Linting') {
