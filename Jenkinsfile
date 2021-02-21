@@ -8,7 +8,7 @@ pipeline {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]){
                     sh 'python3.8 -m venv venv'
-                    sh 'source venv/bin/activate'
+                    sh '. venv/bin/activate'
                     sh 'make install'
                     sh 'ls -al'
                 }
