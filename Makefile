@@ -1,15 +1,9 @@
-## The Makefile includes instructions on environment setup for running locally and lint tests
-
-## Create python virtualenv & source it at terminal 
-# setup: Manually setup at terminal
-# python3.8 -m venv ./.flaskApp
-	## activate venv: 
-# source .flaskApp/bin/activate 
+#!/bin/bash
 
 install:
 	# This should be run from inside a virtualenv	
-	pip install --upgrade pip -H &&\
-		pip install -r requirements.txt -H 
+	sudo pip install --upgrade pip &&\
+		sudo pip install -r requirements.txt 
 
 	# Install hadolint	
 	wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
