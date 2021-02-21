@@ -9,6 +9,7 @@ pipeline {
                     sh 'ls -al /var/lib/jenkins/'
                     sh 'ls -al /var/lib/jenkins/miniconda3'
                     sh 'ls -al /var/lib/jenkins/miniconda3/bin'
+                    sh 'touch -p /etc/profile'
                     sh '#!/bin/bash echo export PATH="/var/lib/jenkins/miniconda3/bin:$PATH" >> /etc/profile'
                     // sh '#!/bin/bash source /var/lib/jenkins/miniconda3/bin/activate'
                     sh 'conda create --yes -n venv'
