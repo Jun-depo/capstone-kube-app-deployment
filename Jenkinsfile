@@ -7,7 +7,9 @@ pipeline {
             }   
             steps                               
                 {
+                    sh 'mkdir /.cache/pip'
                     sh 'chmod 777 /.cache/pip'
+                    sh 'mkdir /.local'
                     sh 'chmod 777 /.local'
                     sh 'pip install pylint pylint-flask-sqlalchemy' 
                     sh 'wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
