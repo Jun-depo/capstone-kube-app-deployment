@@ -7,7 +7,7 @@ pipeline {
             }   
             steps {
                 sh 'ls -al .cache/pip/'
-                sh 'sudo chown 777 .cache/pip/'                
+                sh 'chmod 777 .cache/pip/'                
                 sh 'make install' 
                 sh './hadolint Dockerfile'
                 sh 'pylint --disable=R,C,W1203 --load-plugins pylint_flask_sqlalchemy app.py'
