@@ -4,8 +4,6 @@ pipeline {
         stage('Linting') {
             steps { withPythonEnv('/usr/bin/python3.8')                              
                 {
-                    sh 'python3.8 -m venv venv'
-                    sh '. venv/bin/activate'
                     sh 'make install' 
                     sh './hadolint Dockerfile'
                     sh 'pylint --disable=R,C,W1203 --load-plugins pylint_flask_sqlalchemy app.py'
