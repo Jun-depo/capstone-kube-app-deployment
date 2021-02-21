@@ -6,6 +6,9 @@ pipeline {
                 {   
                     // sh 'wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh'
                     // sh 'bash Miniconda3-latest-Linux-x86_64.sh -b -p'
+                    sh 'ls -al /var/lib/jenkins/'
+                    sh 'ls -al /var/lib/jenkins/miniconda3'
+                    sh 'ls -al /var/lib/jenkins/miniconda3/bin'
                     sh '#!/bin/bash source /var/lib/jenkins/miniconda3/bin/activate'
                     sh 'conda create --yes -n venv'
                     sh 'conda activate venv'
