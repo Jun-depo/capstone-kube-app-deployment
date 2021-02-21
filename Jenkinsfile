@@ -9,7 +9,7 @@ pipeline {
                     sh 'ls -al /var/lib/jenkins/'
                     sh 'ls -al /var/lib/jenkins/miniconda3'
                     sh 'ls -al /var/lib/jenkins/miniconda3/bin'
-                    sh '#!/bin/bash source /var/lib/jenkins/miniconda3/bin/activate'
+                    // sh '#!/bin/bash source /var/lib/jenkins/miniconda3/bin/activate'
                     sh 'conda create --yes -n venv'
                     sh 'conda activate venv'
                     sh 'make install'
