@@ -6,10 +6,11 @@ pipeline {
                 docker { image 'python:3.8.7-buster'} 
             }           
             steps {
-                withPythonEnv('/usr/bin/python3.8') {
+                withEnv(["HOME=${env.WORKSPACE}"]){
                     sh 'python3.8 -m venv venv'
-                    sh '. venv/bin/activate'
+                    sh 'source venv/bin/activate'
                     sh 'make install'
+                    sh 'ls -al'
                 }
             }
         }
