@@ -7,6 +7,8 @@ pipeline {
             }           
             steps {
                 withPythonEnv('/usr/bin/python3.8') {
+                    sh 'python3.8 -m venv venv'
+                    sh '. venv/bin/activate'
                     sh 'make install'
                 }
             }
