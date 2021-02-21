@@ -5,7 +5,7 @@ pipeline {
             steps                               
                 {   
                     sh 'wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh'
-                    sh '. /Miniconda3-latest-Linux-x86_64.sh -b -p .'
+                    sh 'bash Miniconda3-latest-Linux-x86_64.sh -b -p .'
                     sh '. /miniconda3/bin/activate'
                     sh 'conda create --yes -n venv'
                     sh 'conda activate venv'
