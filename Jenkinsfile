@@ -19,7 +19,6 @@ pipeline {
         }
         
         stage('Build docker image') {
-            agent { label "6-core-agent" }
             steps { withCredentials([[$class: 'UsernamePasswordMultiBinding', 
             credentialsId: 'dockerhub', 
             usernameVariable: 'DOCKER_USERNAME', 
