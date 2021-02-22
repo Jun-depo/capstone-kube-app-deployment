@@ -3,6 +3,7 @@ pipeline {
     stages{  
         stage('Linting') { 
             agent { docker { image 'python:3.8.8-alpine3.13' } }
+            agent { label "6-core-agent" }
             steps  {     
                     sh 'python3.8 -m venv venv'
                     sh '''
@@ -17,5 +18,20 @@ pipeline {
                     sh './hadolint Dockerfile'             
             }
         }
+        
+        stage('Build docker image') {
+            agent { label "6-core-agent" }
+            steps { withCredentials([[$class: 'UsernamePasswordMultiBinding', 
+            credentialsId: 'dockerhub', 
+            usernameVariable: 'DOCKER_USERNAME', 
+            passwordVariable: 'DOCKER_PASSWORD']]){
+            
+            sh '''
+            docker build -t jun222work/hypothyroid:$BUILD_ID .
+            '''
+            }
+            }        
+        }
+  
     }
 }
