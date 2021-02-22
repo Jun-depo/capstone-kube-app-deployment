@@ -27,11 +27,9 @@ pipeline {
             sh '''
             #!/bin/bash
             
-            COOMIT_TAG=$(git rev-parse HEAD | head -c8)
-            echo Commit $COOMIT_TAG
-            '''            
-            sh '''
-            docker build -t jun222work/hypothyroid:$COOMIT_TAG .
+            COMMIT_TAG=$(git rev-parse HEAD | head -c8)
+            echo Commit $COMMIT_TAG
+            docker build -t jun222work/hypothyroid:$COMMIT_TAG .
             '''
             }
             }        
@@ -46,7 +44,7 @@ pipeline {
                                 
                 dockerpath=jun222work/hypothyroid
                 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-                docker image push $dockerpath:$COOMIT_TAG
+                docker image push $dockerpath:$COMMIT_TAG
                 '''                           
                 }
             }
