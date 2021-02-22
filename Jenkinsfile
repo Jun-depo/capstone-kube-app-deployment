@@ -25,10 +25,30 @@ pipeline {
             passwordVariable: 'DOCKER_PASSWORD']]){
             
             sh '''
+            #!/bin/bash
+            echo "BUILD_ID: $BUILD_ID"
+            '''            
+            sh '''
             docker build -t jun222work/hypothyroid:$BUILD_ID .
             '''
             }
             }        
+        }
+        stage('Push image') {
+            steps { withCredentials([[$class: 'UsernamePasswordMultiBinding', 
+                credentialsId: 'dockerhub', 
+                usernameVariable: 'DOCKER_USERNAME', 
+                passwordVariable: 'DOCKER_PASSWORD']]) {
+                sh '''
+                #!/bin/bash
+                echo "BUILD_ID: $BUILD_ID"
+                '''            
+                sh '''
+                dockerpath=jun222work/hypothyroid
+                docker image push $dockerpath:$BUILD_ID
+                '''                           
+                }
+            }
         }
   
     }

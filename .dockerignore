@@ -1,0 +1,8 @@
+- .venv
+- __pycache__
+- hadolint
+- hypodata_mean_values_for_filling_nan_values
+- README.md
+- run_docker.sh
+- run_kubernetes.sh
+- upload_docker.sh
