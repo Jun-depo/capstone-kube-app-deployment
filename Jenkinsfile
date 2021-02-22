@@ -7,7 +7,8 @@ pipeline {
                     sh 'python3.8 -m venv venv'
                     sh '''
                         . venv/bin/activate
-                        pip install pylint
+                        pip install --upgrade pip && pip install -r requirements.txt 
+                        pylint --disable=R,C,W1203 --load-plugins pylint_flask_sqlalchemy --load-plugins pylint_flask app.py
                         pylint --disable=R,C forms.py
                         pylint --disable=R,C hypothyroid.py
                         '''
