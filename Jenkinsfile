@@ -2,9 +2,8 @@ pipeline {
     agent any
     stages{  
         stage('Linting') { 
-            steps  { 
-                // agent { docker { image 'python:3.8.8-alpine3.13' } }                 
-                  
+            agent { docker { image 'python:3.8.8-alpine3.13' } }
+            steps  {     
                     sh 'python --version'
                     sh 'make install'
                     sh './hadolint Dockerfile'
