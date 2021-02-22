@@ -3,7 +3,7 @@ pipeline {
     stages{  
         stage('Linting') { 
             steps  { 
-                agent { docker { image 'python:3.8.8-alpine3.13' } }                 
+                // agent { docker { image 'python:3.8.8-alpine3.13' } }                 
                 {   
                     sh 'python --version'
                     sh 'make install'

@@ -68,7 +68,7 @@ Resources:
     DependsOn: EC2SecGroup
     Properties:
       ImageId: ami-02fe94dee086c0c37
-      InstanceType: t2.medium
+      InstanceType: t2.micro
       SecurityGroupIds:
       - !GetAtt "EC2SecGroup.GroupId"
       KeyName: !Ref EC2KeyPair
