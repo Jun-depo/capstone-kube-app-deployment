@@ -41,7 +41,10 @@ pipeline {
                 passwordVariable: 'DOCKER_PASSWORD']]) {
                 sh '''
                 #!/bin/bash
-                                
+                
+                COMMIT_TAG=$(git rev-parse HEAD | head -c8)
+                echo Commit $COMMIT_TAG 
+
                 dockerpath=jun222work/hypothyroid
                 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
                 docker image push $dockerpath:$COMMIT_TAG
