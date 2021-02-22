@@ -2,8 +2,7 @@ pipeline {
     agent any
     stages{  
         stage('Linting') { 
-            agent { docker { image 'python:3.8.8-alpine3.13' } }
-            agent { label "6-core-agent" }
+            agent { docker { image 'python:3.8.7-buster' } }
             steps  {     
                     sh 'python3.8 -m venv venv'
                     sh '''
