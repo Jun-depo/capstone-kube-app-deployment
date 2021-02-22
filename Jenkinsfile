@@ -31,7 +31,7 @@ pipeline {
             echo Commit $COOMIT_TAG
             '''            
             sh '''
-            docker build -t jun222work/hypothyroid:COOMIT_TAG .
+            docker build -t jun222work/hypothyroid:$COOMIT_TAG .
             '''
             }
             }        
