@@ -41,11 +41,13 @@ pipeline {
                 passwordVariable: 'DOCKER_PASSWORD']]) {
                 sh '''
                 #!/bin/bash
-                echo "BUILD_ID: $BUILD_ID"
+                COOMIT_TAG=$(git rev-parse HEAD | head -c8)
+                echo Commit $COOMIT_TAG
                 '''            
                 sh '''
                 dockerpath=jun222work/hypothyroid
-                docker image push $dockerpath:$BUILD_ID
+                docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                docker image push $dockerpath:$COOMIT_TAG
                 '''                           
                 }
             }
