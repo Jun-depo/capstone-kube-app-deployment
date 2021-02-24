@@ -4,7 +4,7 @@ pipeline {
         New_VERSION = "V1"
     }
     parameters {
-        booleanParam(name: "DockerBuild", defaultValue: True)        
+        booleanParam(name: "DockerBuild", defaultValue: true)        
         booleanParam(name: "RollingUpdate", defaultValue: false)
     }
     stages{  
