@@ -36,7 +36,7 @@ class Hypothyroid(db.Model):
 
     def __init__(self,name, age, tsh, t3, tt4, t4u, fti):
         self.name = name
-        self.age = age
+        self.age = agee
         self.tsh = tsh
         self.t3 = t3
         self.tt4 = tt4
