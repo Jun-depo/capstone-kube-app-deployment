@@ -75,9 +75,14 @@ pipeline {
         stage('Rolling update docker image to Version-2') {
             when { expression { params.RollingUpdate } }
             steps {
+
+                withAWS(region:'us-east-1', credentials:'aws_credentials')
+                {
                     sh "kubectl set image deployment/hypothyroid-deployment \
                     hypothyroid=jun222work/hypothyroid:$New_VERSION"
-                    }
+                }
+                    
+            }
         }
   
     }

@@ -22,16 +22,23 @@ The outline of the steps for this project
 
 All the steps above were scripted in Jenkinsfile which perform the tasks in stages.  I will discuss these stages in the following sections.
 
+### Install Jenkins, awscli, blue ocean plugin 
+
+
+
 
 ### Stage "Linting"
 Detect mistakes in python files.  As show in the following pictures.
 
  <img src="images/fail1.png" />
+
  <img src="images/fail2.png" />
 
 After this mistake, the pipeline went through without out the problem.  
 
 ### Stage "Build docker image"
+
+
 
 
 
