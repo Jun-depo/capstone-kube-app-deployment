@@ -70,6 +70,7 @@ pipeline {
                 {
                     sh 'kubectl apply -f k8s/deployment_service.yaml' 
                 }
+            }
         }
         stage('Rolling update docker image to Version-2') {
             when { expression { params.RollingUpdate } }
