@@ -108,7 +108,7 @@ eksctl 0.38.0
 
 ### Further Reading
 
-The following links were very helpful for me to finish the project.  Thanks, Alvaro Andres Pinzon Cortes for writing them.  
+The following links were very helpful for the project. Thanks, Alvaro Andres Pinzon Cortes for writing them.  
 
 https://andresaaap.medium.com/capstone-cloud-devops-nanodegree-4493ab439d48
 
