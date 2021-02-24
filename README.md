@@ -8,7 +8,7 @@ The outline of the steps for this project
 
 1. Build an Machine Learning flask app.  
 
-I have built hyothyroid classification app previously with flask.  The app is slightly modified for this project.
+* I have built hyothyroid classification app previously with flask [link](https://github.com/Jun-depo/hypothyroid_flaskapp).  The app is slightly modified for this project.
 
 2. Build docker image version 1 for this app and deposit at docker hub.  
 
@@ -20,7 +20,21 @@ I have built hyothyroid classification app previously with flask.  The app is sl
 
 5. Use kubenetes services to perform rolling update with new docker image. 
 
-All the steps above were scripted in Jenkinsfile which perform the tasks in stages.  
+All the steps above were scripted in Jenkinsfile which perform the tasks in stages.  I will discuss these stages in the following sections.
+
+
+### Stage "Linting"
+Detect mistakes in python files.  As show in the following pictures.
+
+ <img src="images/fail1.png" />
+ <img src="images/fail2.png" />
+
+After this mistake, the pipeline went through without out the problem.  
+
+### Stage "Build docker image"
+
+
+
 
 
 

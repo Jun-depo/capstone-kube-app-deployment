@@ -4,7 +4,7 @@ pipeline {
         New_VERSION = "V2"
     }
     parameters {
-        booleanParam(name: "DockerBuild", defaultValue: true)        
+        booleanParam(name: "DockerBuild", defaultValue: false)        
         booleanParam(name: "RollingUpdate", defaultValue: true)
     }
     stages{  
@@ -75,7 +75,7 @@ pipeline {
         stage('Rolling update docker image to Version-2') {
             when { expression { params.RollingUpdate } }
             steps {
-                    sh "kubectl set image deployment/hypothyroid-deployment hypothyroid \
+                    sh "kubectl set image deployment/hypothyroid-deployment \
                     hypothyroid=jun222work/hypothyroid:$New_VERSION"
                     }
         }
