@@ -1,5 +1,12 @@
 pipeline {
     agent any
+    environment {
+        New_VERSION = "V1"
+    }
+    parameters {
+        booleanParam(name: "DockerBuild", defaultValue: True)        
+        booleanParam(name: "RollingUpdate", defaultValue: false)
+    }
     stages{  
         stage('Linting') { 
             agent { docker { image 'python:3.8.7-buster' } }
@@ -19,38 +26,57 @@ pipeline {
         }
         
         stage('Build docker image') {
+            when { expression { params.DockerBuild } }
+            
             steps { withCredentials([[$class: 'UsernamePasswordMultiBinding', 
             credentialsId: 'dockerhub', 
             usernameVariable: 'DOCKER_USERNAME', 
-            passwordVariable: 'DOCKER_PASSWORD']]){
-            
-            sh '''
-            #!/bin/bash
-            
-            COMMIT_TAG=$(git rev-parse HEAD | head -c8)
-            echo Commit $COMMIT_TAG
-            docker build -t jun222work/hypothyroid:$COMMIT_TAG .
-            '''
+            passwordVariable: 'DOCKER_PASSWORD']])
+            {            
+                sh '''#!/bin/bash
+                echo Docker image version: $New_VERSION
+                docker build -t jun222work/hypothyroid:$New_VERSION .
+                '''
             }
             }        
         }
         stage('Push image') {
+
+            when { expression { params.DockerBuild } }
             steps { withCredentials([[$class: 'UsernamePasswordMultiBinding', 
                 credentialsId: 'dockerhub', 
                 usernameVariable: 'DOCKER_USERNAME', 
-                passwordVariable: 'DOCKER_PASSWORD']]) {
-                sh '''
-                #!/bin/bash
-                
-                COMMIT_TAG=$(git rev-parse HEAD | head -c8)
-                echo Commit $COMMIT_TAG 
-
-                dockerpath=jun222work/hypothyroid
-                docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-                docker image push $dockerpath:$COMMIT_TAG
-                '''                           
+                passwordVariable: 'DOCKER_PASSWORD']]) 
+                {
+                    sh '''
+                    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                    docker image push jun222work/hypothyroid:$New_VERSION
+                    '''                           
                 }
             }
+        }
+
+        stage('create the kubeconfig file') {
+            steps {
+                withAWS(region:'us-east-1', credentials:'aws_credentials')
+                {
+                    sh 'aws eks --region us-east-1 update-kubeconfig --name capstonecluster'
+                }                        
+            }            
+        }
+        stage('Deploy Docker image Version 1') {
+            steps {
+                withAWS(region:'us-east-1', credentials:'aws_credentials')
+                {
+                    kubectl apply -f k8s/deployment_service.yaml 
+                }
+        }
+        stage('Rolling update docker image to Version-2') {
+            when { expression { params.RollingUpdate } }
+            steps {
+                    sh "kubectl set image deployment/hypothyroid-deployment hypothyroid
+                    hypothyroid=jun222work/hypothyroid:$New_VERSION"
+                    }
         }
   
     }
