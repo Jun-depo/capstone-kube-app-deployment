@@ -1,11 +1,11 @@
 pipeline {
     agent any
     environment {
-        New_VERSION = "V1"
+        New_VERSION = "V2"
     }
     parameters {
         booleanParam(name: "DockerBuild", defaultValue: true)        
-        booleanParam(name: "RollingUpdate", defaultValue: false)
+        booleanParam(name: "RollingUpdate", defaultValue: true)
     }
     stages{  
         stage('Linting') { 

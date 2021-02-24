@@ -1,18 +1,26 @@
-## Udacity AWS DevOps Nano degree Castone Project
+## Use Jenkins for Continuous Integration, Continuous Deployment or Continuous Delivery (CI/CD) to Deploy a Hypothyroid Machine learning Application (Udacity AWS DevOps Nano degree Castone Project)
 
 ### Propose and Scope the Project
 
-1. Build an Machine Learning flask app.  I have build a flask app previously on hyothyroid classification.  I will modified it for this project.
+This Project use Jenkins as the CI/CD tool to build the Docker image for a machine learning application, then use AWS kubenetes Service to deploy the application using the docker image.
 
-2. I will build a docker container for this app and deposit in docker hub.  The first version is tagged with blue.
+The outline of the steps for this project
 
-3. I will deploy kubenetes service with the blue version
+1. Build an Machine Learning flask app.  
 
-4. I will modify the flask app to build and submit a new docker version tagged as green. 
+I have built hyothyroid classification app previously with flask.  The app is slightly modified for this project.
 
-5. Deploy kubenetes services with new docker version via blue/green or rolling update. 
+2. Build docker image version 1 for this app and deposit at docker hub.  
 
-6. I use Jenkins for CI/CD of the blue/green or rolling deployment
+* Dockerfile contains the info to build docker image.
+
+3. Deploy kubenetes service with version 1 of the docker image (tagged V1). 
+
+4. Modify the flask app to build and deposit version 2 of the docker version (tagged V2). 
+
+5. Use kubenetes services to perform rolling update with new docker image. 
+
+All the steps above were scripted in Jenkinsfile which perform the tasks in stages.  
 
 
 
