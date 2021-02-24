@@ -74,7 +74,7 @@ pipeline {
         stage('Rolling update docker image to Version-2') {
             when { expression { params.RollingUpdate } }
             steps {
-                    sh "kubectl set image deployment/hypothyroid-deployment hypothyroid
+                    sh "kubectl set image deployment/hypothyroid-deployment hypothyroid \
                     hypothyroid=jun222work/hypothyroid:$New_VERSION"
                     }
         }
