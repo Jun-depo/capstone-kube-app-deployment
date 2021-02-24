@@ -68,7 +68,7 @@ pipeline {
             steps {
                 withAWS(region:'us-east-1', credentials:'aws_credentials')
                 {
-                    kubectl apply -f k8s/deployment_service.yaml 
+                    sh 'kubectl apply -f k8s/deployment_service.yaml' 
                 }
         }
         stage('Rolling update docker image to Version-2') {
