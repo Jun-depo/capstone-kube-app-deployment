@@ -78,6 +78,34 @@ The first deployment skipped the following rolling update stage as shown in the 
 
 <img src="images/deploy_V1b.png" />
 
+The DNS can be used for the web access to the app, which can be obtained via CLI  "kubectl get svc"
+
+<img src="images/dns.png" />
+
+<img src="images/version1c.png" />
+
+### stage('Rolling update docker image to Version-2')
+
+I used "kubectl set image" method for the rolling update.  I tagged the docker image with $NEW_VERSION.  As NEW_VERSION was set as "V2".  It could be any tagged version as long as tagged version exist at dockerhub.  One of good practices is to tagged docker image with first 6 or 8 letters of git commit. So, it is easier to associate each image to codes in a particular commit. As the result of the rolling update.  The app version switched from version 1 to version 2 as in the pictures below.  
+
+<img src="images/version2b.png" />
+
+### Dev Environment
+
+Ubuntu 20.04
+aws-cli/1.18.69 Python/3.8.5 Linux/5.8.0-43-generic botocore/1.16.19
+kubectl v1.20.2
+eksctl 0.38.0
+
+### Further Reading
+
+
+
+Thanks 
+
+
+
+
 
 
 
