@@ -1,10 +1,10 @@
-## Use Jenkins for Continuous Integration, Continuous Deployment or Continuous Delivery (CI/CD) to Deploy a Hypothyroid Machine learning Application 
+## Use Jenkins to Deploy a Hypothyroid Machine learning Application 
 
 ### (Udacity AWS DevOps Nano degree Capstone Project)
 
 ### Propose and Scope the Project
 
-This Project use Jenkins as the CI/CD tool to build the Docker image for a machine learning application, then use AWS kubenetes Service to deploy the application using the docker image.
+The Continuous Integration, Continuous Deployment or Continuous Delivery (CI/CD) is very important for the software development and production as scale. Jenkins is one of popular CI/CD tool for that. This Project uses Jenkins to build and deploy a machine learning application via docker and AWS kubenetes Service.
 
 The outline of the steps for this project
 
@@ -14,15 +14,14 @@ The outline of the steps for this project
 
 2. Build docker image version 1 of the app, then deposit it at docker hub.  
 
-* Dockerfile contains the info to build docker image.
-
 3. Deploy kubenetes service with version 1 of the docker image (tagged V1). 
 
 4. Modify the flask app to build and deposit version 2 of the docker image (tagged V2). 
 
 5. Use kubenetes services to perform rolling update with new version of the docker image. 
 
-All the steps above were scripted inside Jenkinsfile which perform the tasks in stages. I will discuss these stages in the following sections.
+All the steps above were scripted inside Jenkinsfile which integrated the whole development and production processes. Jenkinsfile perform tasks as stages.  
+ I will discuss these stages in the following sections.
 
 ### Install Jenkins, awscli, blue ocean plugin etc
 
@@ -32,17 +31,18 @@ All the steps above were scripted inside Jenkinsfile which perform the tasks in 
 
 
 ### Stage "Linting"
-Detect mistakes in python with pylint and Dockerfile files with hadolint.  As show in the following pictures, app.py contained the mistake and failed the linting stage.
+
+* This stage was to detect mistakes in python with pylint and Dockerfile files with hadolint.  As show in the following pictures, app.py contained the mistake and failed the linting stage.
 
  <img src="images/fail1.png" />
 
  <img src="images/fail2.png" />
 
-After correcting this mistake, the pipeline went through without out the problem.  
+* After correcting this mistake, the pipeline went through without out the problem.  
 
 ### Stage "Build docker image" and 
 
-* Docker image is built based on Dockerfile.  I also included .dockerignore to exclude files copying into the container.  
+* Docker image was built based on Dockerfile.  I also included .dockerignore to exclude files copying into the container.  
 
 * In addition, I added conditional parameter inside Jenkinsfile to control when to build and push docker image to dockerhub.  Similarly, this can also be used to control rolling update.The pictures below show an example this selection method. 
 
@@ -50,7 +50,7 @@ After correcting this mistake, the pipeline went through without out the problem
 
 <img src="images/version2a.png" />
 
-The docker image was tagged with version such as V1 or V2.  I specify an environmnent as environment { NEW_VERSION = "V2" }, use $NEW_VERSION to tag the docker image. 
+* The docker image was tagged with version such as V1 or V2.  I specify an environmnent as environment { NEW_VERSION = "V2" }, use $NEW_VERSION to tag the docker image. 
 
 ### Stage 'Push image'
 * Push image to dockerhub. So, it can be used for kuibenetes deployment.  This required dockerhub credential in Jenkins to interact with dockerhub.
@@ -68,7 +68,7 @@ The docker image was tagged with version such as V1 or V2.  I specify an environ
 
 <img src="images/stack1.png" />
 
-Alternative, one can configure their own kubenetes cluster through Cloudformation scripts.  
+Alternative, one can configure their own kubenetes cluster through their own Cloudformation scripts.  
 
 ### stage 'create the kubeconfig file'
 * This create kubeconfig file, required for later kubenetes deployment. 
@@ -83,7 +83,7 @@ The first deployment skipped the following rolling update stage as shown in the 
 
 <img src="images/deploy_V1b.png" />
 
-The DNS can be used for the web access to the app, which can be obtained via CLI  "kubectl get svc". In this way, we can access the app through web interface. 
+* The DNS can be used for the web access to the app, which can be obtained via CLI  "kubectl get svc". In this way, we can access the app through the web interface (http://a22e202dc0b9d49478bf701a8b655164-1513508813.us-east-1.elb.amazonaws.com/ )
 
 <img src="images/dns.png" />
 
@@ -91,7 +91,7 @@ The DNS can be used for the web access to the app, which can be obtained via CLI
 
 ### stage('Rolling update docker image to Version-2')
 
-I used "kubectl set image" method for the rolling update.  I tagged the docker image with $NEW_VERSION.  As NEW_VERSION was set as "V2". It updated app to V2.  It could be used to tag any version as long as a tagged version exist at dockerhub.  One of good practices is to tagged docker image with first 6 or 8 letters of git commit. So, it is easier to associate each image to code base of a particular commit. The rolling update resulted the app version switched from version 1 to version 2 as shown in the pictures below.  
+I used "kubectl set image" method for the rolling update.  I tagged the docker image with $NEW_VERSION.  As NEW_VERSION was set as "V2". It updated app to V2.  It could be used to tag any version as long as a tagged version exist at dockerhub.  One of good practices is to tagged docker image with first 6 or 8 letters of git commit. So, it is easier to associate each image to code base of a particular commit. The rolling update resulted the app switched from version 1 to version 2 as shown in the pictures below.  
 
 <img src="images/version2b.png" />
 
