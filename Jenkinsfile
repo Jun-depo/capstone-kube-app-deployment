@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-        New_VERSION = "V2"
+        NEW_VERSION = "V2"
     }
     parameters {
-        booleanParam(name: "DockerBuild", defaultValue: false)        
+        booleanParam(name: "DockerBuild", defaultValue: true)        
         booleanParam(name: "RollingUpdate", defaultValue: true)
     }
     stages{  
@@ -34,8 +34,8 @@ pipeline {
             passwordVariable: 'DOCKER_PASSWORD']])
             {            
                 sh '''#!/bin/bash
-                echo Docker image version: $New_VERSION
-                docker build -t jun222work/hypothyroid:$New_VERSION .
+                echo Docker image version: $NEW_VERSION
+                docker build -t jun222work/hypothyroid:$NEW_VERSION .
                 '''
             }
             }        
@@ -50,7 +50,7 @@ pipeline {
                 {
                     sh '''
                     docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-                    docker image push jun222work/hypothyroid:$New_VERSION
+                    docker image push jun222work/hypothyroid:$NEW_VERSION
                     '''                           
                 }
             }
@@ -79,7 +79,7 @@ pipeline {
                 withAWS(region:'us-east-1', credentials:'aws_credentials')
                 {
                     sh "kubectl set image deployment/hypothyroid-deployment \
-                    hypothyroid=jun222work/hypothyroid:$New_VERSION"
+                    hypothyroid=jun222work/hypothyroid:$NEW_VERSION"
                 }
                     
             }
