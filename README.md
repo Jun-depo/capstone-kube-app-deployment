@@ -89,7 +89,7 @@ The first deployment skipped the following rolling update stage as shown in the 
 
 <img src="images/deploy_V1b.png" />
 
-* The DNS can be used for the web access to the app, which can be obtained via CLI  "kubectl get svc". In this way, we can access the app through the web interface (http://a22e202dc0b9d49478bf701a8b655164-1513508813.us-east-1.elb.amazonaws.com/ )
+* The DNS can be used for the web access to the app, which can be obtained via CLI  "kubectl get svc". In this way, we can access the app through the web interface (http://a22e202dc0b9d49478bf701a8b655164-1513508813.us-east-1.elb.amazonaws.com/ ). **Update**:  The cluster has been deleted. The the link is not active.
 
 <img src="images/dns.png" />
 
