@@ -64,7 +64,7 @@ All the steps above were scripted inside Jenkinsfile which integrated the whole 
 
 <img src="images/eksctl_create.png" />
 
-* EKS automatically configures the required resources and permissions to create the cluster.  This creates 3 cloudformation stacks with the resources associate with them. 
+* EKS automatically configures the required resources and permissions to create the cluster.  This creates 3 cloudformation stacks with the resources associate with them. Read more info on create and mange eks cluster at [this link](https://eksctl.io/usage/creating-and-managing-clusters/)
 
 <img src="images/stack1.png" />
 
