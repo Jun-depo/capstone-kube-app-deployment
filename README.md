@@ -107,10 +107,10 @@ I used "kubectl set image" method for the rolling update.  I tagged the docker i
 
 ### Dev Environment
 
-Ubuntu 20.04
-aws-cli/1.18.69 Python/3.8.5 Linux/5.8.0-43-generic botocore/1.16.19
-kubectl v1.20.2
-eksctl 0.38.0
+* Ubuntu 20.04
+* aws-cli/1.18.69 Python/3.8.5 Linux/5.8.0-43-generic botocore/1.16.19
+* kubectl v1.20.2
+* eksctl 0.38.0
 
 ### Further Reading
 
