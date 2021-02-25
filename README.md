@@ -4,7 +4,7 @@
 
 ### Propose and Scope the Project
 
-The Continuous Integration, Continuous Deployment or Continuous Delivery (CI/CD) is very important for the software development and production as scale. Jenkins is one of popular CI/CD tool for that. This Project uses Jenkins to build and deploy a machine learning application via docker and AWS kubenetes Service.
+The Continuous Integration, Continuous Deployment or Continuous Delivery (CI/CD) is very important for the software development and production as scale. Jenkins is one of popular CI/CD tools for that. This Project uses Jenkins to build and deploy a machine learning application via docker and AWS kubenetes Service.
 
 The outline of the steps for this project
 
