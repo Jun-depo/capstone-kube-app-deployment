@@ -68,6 +68,12 @@ All the steps above were scripted inside Jenkinsfile which integrated the whole 
 
 <img src="images/stack1.png" />
 
+Launched kubenetes clusters inculdes two EC2 instances that belong to the capstonecluster. 
+
+<img src="images/EC2a.png" />
+
+<img src="images/EC2b.png" />
+
 Alternative, one can configure their own kubenetes cluster through their own Cloudformation scripts.  
 
 ### stage 'create the kubeconfig file'
